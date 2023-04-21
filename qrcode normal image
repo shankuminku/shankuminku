@@ -1,0 +1,3 @@
+import qrcode as qr
+img = qr.make("https://www.youtube.com/watch?v=I2a0YOyc2Ic")
+img.save("harekrishna.png")
