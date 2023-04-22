@@ -1,0 +1,17 @@
+#install pytube from pip
+from pytube import YouTube
+
+link = "https://www.youtube.com/watch?v=IuuGgHbCnkA"
+youtube_1 = YouTube(link)
+
+#print(youtube_1.title)
+#print(youtube_1.thumbnail_url)
+
+# videos = youtube_1.streaming.all()  #all format
+videos = youtube_1.streams.filter(onlu_audio=True)
+vid = list(enumerate(video))
+for i in vid:
+    print(i)
+strm = int(input(" enter : "))    
+video[strm].download()
+print("successfully")
