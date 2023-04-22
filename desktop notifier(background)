@@ -1,0 +1,15 @@
+# install time and plyer using pip
+
+from plyer import notification
+import time 
+
+if __name__ == '__main__':
+        while True:
+         notification.notify(
+             title="take rest",
+             message="rest is a vital for better life"
+             app_icon="D:/notificatiom/try.ico",
+             timeout=5)
+         time.sleep(20)     
+         
+#pythonw file.py         
