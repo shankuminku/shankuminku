@@ -1,0 +1,16 @@
+from skpy import Skype
+import os.path
+slogin = skype("gmail","pass")
+contact = slogin.contacts["live id"]
+with open("location","rb") as f:
+    contact.chat.sendFile(f,"file name as png",image=True)
+    
+#for group making
+group = slogin.chats.create(["live id","live id 2"])
+
+#for sending message
+contact = slogin.contacts["live id "]
+contact.chat.sendMsg("message")
+
+for i in contact :
+  print(i)
