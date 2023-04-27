@@ -1,0 +1,2 @@
+import pywhatkit as pyw
+pyw.sendwhatmsg('+916205283009','welcome to foodease',15,24)#15 and 24 is hour and minute 
