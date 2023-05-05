@@ -172,13 +172,198 @@ volume.set(20)
 
 
 ############################################
+
+##############brightness#############
+lbl_brightness=Label(RHS,text='',font=('',10,''),bg='')
+lbl_brightness.place(x=10,y=190)
+
+
+current_value=tk.DoubleVar()
+
+def get_current_value():
+    return '{: .2f}'.format(current_value.get())
+    
+def brightness_changed(event):
+    pct.set_brightness(get_current_value())
+
+brightness= ttk.Scale(RHS,from_=0,to=100,orient='',command=brightness_changed,variable=current_value)
+brightness.place(x=90,y=190)
+########################################################
+
+def weather():
+    app1=Toplevel()
+    app1.geometry('850x500+300+170')
+    app1.title('weather')
+    app1.configure(bg='')
+    app1.resizable(False,False)
+    
+    #icon
+    image_icon=PhotoImage(file='')
+    app1.iconphoto(False,image_icon)
+    
+    def geatweather():
+        try:
+            city=textfield.get()
+            
+            geolocator=Nomination(user_agnet="")
+            location=geolocator.geocode(city)
+            obj=TimezoneFinder()
+            result = obj.timezone_at(lng=location.longitude,)
+            
+            home=pytz.timezone(result)
+            local_time=datetime.now(home)
+            current_time=local_time.strftime("%I:%M%p")
+            clock.config(text=current_time)
+            name.conig(text="")
+            
+            #weather
+            api=""
+            
+            json_data = requests.get(api).json()
+            condition = json_data[''][][]
+            description = json_data[][][]
+            temp=int(json_data[][][]-273.15)
+            humidity=json_data[][][]
+            pressure=json_data[][][]
+            wind=json_data[][][]
+            
+            t.config(text=())
+            c.config(text=())
+            
+            w.config(text=wind)
+            h.config(text=humidity)
+            d.config(text=descriptio)
+            p.config(text=pressure)
+            
+            
+        except Exception as e:
+            messagebox.showerror("","")
+    
+    #search box
+    search_image=PhotoImage(file="")
+    myimage=Label(app1,image=search_image,bg='')
+    myimage.place(x=20,y=20)
+    
+    textfield=tk.Entry(app1,justify='',width=,font=('',25,''),bg='',border=0,fg='')
+    textfield.place(x=50,y=40)
+    textfield.focus()
+    
+    search_icon=PhotoImage(file='')
+    myimage_icon=Button(app1,"","",command=getweather)
+    myimage_icon.place(x=400,y=34)
+    
+    #logo
+    logo_image=PhotoImage(file="")
+    logo=Label(app1,image=Logo_image,bg="")
+    logo.place(x=150,y=100)
+    
+    #bottom box
+    Frame_image=PhotoImage(file="")
+    frame_myimage=Label()
+    frame_myimage.pack(padex=5,pady=5,side=BOTTOM)
+    
+    
+    #time
+    name=Label(app1,font=())
+    name.place(x=30,y=100)
+    clock=Label(app1,font())
+    clock.place(x=30,y=130)
+    
+    #label
+    label1=Label(app1,text="wind")
+    label1.place(x=120,y=400)
+    
+    label2=Label(app1,text="humidity")
+    label2.place(x=250,y=400)
+    
+    label3=Label(app1,text="description")
+    label3.place(x=430,y=400)
+    
+    label4=Label(app1,text="pressure")
+    label4.place(x=650,y=400)
+    
+    t=Label(app1,font=())
+    t.place(x=400,y=150)
+    
+     
+    c=Label(app1,font=())
+    c.place(x=400,y=250)
+    
+    w=Label(app1,)
+    w.place(x=120,y=430)
+    
+    h=Label(app1,)
+    h.place(x=280,y=430)
+    
+    d=Label(app1,)
+    d.place(x=450,y=430)
+    
+    p=Label(app1,)
+    p.place(x=670,y=430)
+    
+
+    app1.mainloop()
+    
+    
+def clock():
+    app2.Toplevel()
+    app2.geometry("")
+    app2.title('clock')
+    app2.configure()
+    app2.resizable(False,False)
+    
+    #icon
+    image_icon=PhotoImage()
+    
+    
+    app2.mainloop()
+
 #---------------------------------------
 RHB=Frame(Body,width=470,height=190,bg='#f4f5f5',highlightbackground='',hightthickness=1)
 RHB.place(x=10,y=10)
 
+apps=Label(RHB,txt='',font=('',15),bg='')
+apps.place(x=10,y=10)
 
+app1_image=PhotoImage()
+app1=Button(RHB,image=app1_image,bd=0,command=weather)
+app1.place(x=15,y=50)
 
+app2_image=PhotoImage()
+app2=Button(RHB,image=app2_image,bd=0,command=clock)
+app2.place(x=100,y=50)
 
+app3_image=PhotoImage()
+app3=Button(RHB,image=app3_image,bd=0)
+app3.place(x=185,y=50)
+
+app4_image=PhotoImage()
+app4=Button(RHB,image=app5_image,bd=0)
+app4.place(x=270,y=50)
+
+app5_image=PhotoImage()
+app5=Button(RHB,image=app5_image,bd=0)
+app5.place(x=355,y=50)
+
+app6_image=PhotoImage()
+app6=Button(RHB,image=app6_image,bd=0)
+app6.place(x=15,y=120)
+
+app7_image=PhotoImage()
+app7=Button(RHB,image=app7_image,bd=0)
+app7.place(x=100,y=120)
+
+app8_image=PhotoImage()
+app8=Button(RHB,image=app8_image,bd=0)
+app8.place(x=185,y=120)
+
+app9_image=PhotoImage()
+app9=Button(RHB,image=app9_image,bd=0)
+app9.place(x=270,y=120)
+
+app10_image=PhotoImage()
+app10=Button(RHB,image=app10_image,bd=0)
+app10.place(x=355,y=120)
 
 
 
