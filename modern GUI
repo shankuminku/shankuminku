@@ -54,4 +54,132 @@ body.pack(pady=20,padx=20)
 LHS=Frame(Body,width=310,height=435,bg='#f4f5f5',highlightbackground='',hightthickness=1)
 LHS.place(x=10,y=10)
 
+#logo
+photo=PhotoImage("file name")
+myimage=Label(LHS,image=photo,background='#f4f5f5')
+myimage.place(x=2,y=20)
+
+my_system=platform.uname()
+
+l1=Label(LHS, text=my_system.node,bg="",font=("",15,'bold'),justify="center")
+l1.place(x=20,y=200)
+
+l2=Label(LHS, text=f"version:{my_system.version}",bg="",font=("",8),justify="center")
+l2.place(x=20,y=225)
+
+l3=Label(LHS, text=f"system:{my_system.system}",bg="",font=("",15),justify="center")
+l3.place(x=20,y=250)
+
+l4=Label(LHS, text=f"machine:{my_system.machine}",bg="",font=("",15),justify="center")
+l4.place(x=20,y=285)
+
+l5=Label(LHS, text=f"TOATAL RAM INSTALLED:{round(pautil.virtual_memory().total/100000000,2)} GB",bg="",font=("",15),justify="center")
+l5.place(x=20,y=310)
+
+l6=Label(LHS, text=f"Processor:{my_system.processor}",bg="",font=("",7),justify="center")
+l6.place(x=20,y=340)
+
+
+
+#---------------------------------------
+RHS=Frame(Body,width=470,height=230,bg='#f4f5f5',highlightbackground='',hightthickness=1)
+RHS.place(x=10,y=10)
+
+system=Label(RHS, text='system',font=("",15),bg="")
+system.place(x=10,y=10)
+
+
+######################Battery##############
+
+def convertTime(seconds):
+    minutes,seconds=divmod(seconds,60)
+    hours,minutes=divmod(minutes,60)
+    return "%d:%02d:%02d"% (hours,minutes,seconds)
+
+
+def none():
+    global battery_png
+    global battery_label
+    battery=psutil.sensors_battery()
+    percent=battery.percent
+    time=convertTime(battery.secsleft)
+    
+    lbl.config(txt=f"{percent}%")
+    lbl_plug.config(text=f'Plug in:{str(battery.power_plugged)}')
+    lbl_time.config(text=f'{time}remaining')
+    
+    
+    battery_label=Label(RHS,background='')
+    battery_label.place(x=15,y=50)
+    
+    
+    lbl.after(1000,none)
+    
+    
+    if battery .power_plugged==True:
+        battery_png=PhotoImage(file="")
+        battery_label.config(image=battery_png)
+        
+    else:
+        battery_png=PhotoImage(file='')
+        battery_label.config(image=battery_png)
+        
+    
+    
+    
+    
+lbl=Label(RHS,font=("",40,'bold'),bg='')
+lbl.place(x=200,y=40)
+
+lbl_plug=Label(RHS,font=("",10),bg='')
+lbl_place.place(x=20,y=100)
+
+lbl_tine=Label(RHS,font=("",15),bg='')
+lbl_time.place(x=200,y=100)
+
+none()
+
+
+#############################################
+
+
+########################speaker############
+
+
+lbl_speaker=label(Rhs,text="speaker:",font=('',10,''),bg='')
+lbl_speaker.place(x=10,y=150)
+volume_value=tk.DoubleVar()
+
+def get_current_volume_value():
+    return,{: .2f}' .format(volume_value.get())
+def volume_changes(event):
+    device = AudioUtilities.Getspeakers()
+    interface = device.Activate(IAudioEndpointVolume._iid_,CLSCTX_ALL,None)
+    volume=cast(interface, POINTER(IAudioEndpointVolume))
+    volume.setMasterVolumeLevel(-float(get_current_volume_value()),None)
+    
+    
+style = ttk.Style()
+style.configure("",backgroumnd='')
+    
+
+volume=ttk.Scale(Rhs,from_=60,to=0,orient='',command=volume_changed,variable=volume_value)
+
+volume.place(x=90,y=150)
+volume.set(20)
+
+
+
+
+############################################
+#---------------------------------------
+RHB=Frame(Body,width=470,height=190,bg='#f4f5f5',highlightbackground='',hightthickness=1)
+RHB.place(x=10,y=10)
+
+
+
+
+
+
+
 root.mainloop()
