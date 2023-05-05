@@ -1,0 +1,57 @@
+from tkinter import *
+from tkinter import ttk
+from tkinter import ttk,messagebox
+import tkinter as tk
+from tkinter import filedialog
+import platform
+import psutil
+
+
+#brightness
+import screen_brightness_control as pct
+
+
+#audio
+from ctypes import cast, POINTER 
+from comtypes import CLSCTX_ALL
+from pycaw.pycaw import AudioUtilities , IAudioEndpointVolume
+
+#weather 
+from geopy.geocoders import Nomination
+from timezonefinder import TimezoneFinder
+from datetime import datetime
+import requests
+import pytz
+
+#clock
+from time import strftime
+
+#calender
+from tkcalender import *
+
+#open google
+import pyautogui
+
+import subprocess
+import webbrowser as wb
+import random
+
+root=Tk()
+root.title('mac-soft Tool')
+root.geometry("850x500+300x170")
+root.resizable(False,False)
+root.configure(bg='#292e2e')
+
+#icon
+iamge_icon=PhotoImage(file="file nane")
+root.iconphoto(False,image_icon)
+
+
+Body=Frame(root,width=900,height=600,bg="#d6d6d6")
+body.pack(pady=20,padx=20)
+
+#---------------------------------------
+LHS=Frame(Body,width=310,height=435,bg='#f4f5f5',highlightbackground='',hightthickness=1)
+LHS.place(x=10,y=10)
+
+root.mainloop()
