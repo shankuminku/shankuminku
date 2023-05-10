@@ -1,0 +1,5 @@
+import rotatescreen 
+import time
+screen = rotatescreen.get_primary_display()
+screen.rotate_to(90)
+print(14 % 3)
