@@ -1,0 +1,211 @@
+from tkinter import *
+from tkinter import ttk
+import random
+import time
+import datetime
+from tkinter import messagebox
+import mysql.connector
+
+class Hospital:
+    def __init__(self,root):
+        self.root=root
+        self.root.title("Hospital Management System")
+        self.root.geometry("1540x800+0+0")
+        
+        lbltitle=Label(self.root,bd=20,relief=RIDGE,text="HOSPITAL MANAGEMENT SYSTEM",FG="RIDGE,RED",bg="white",font="",50,bold)
+        lbltitle.pack(side=TOP,fill=x)
+        
+        #######################data frame#################
+        Dataframe=frame(self.root,bd=20,relief=RIDGE)
+        Dataframe.place(x=0,y=130,width=1530,height=400)
+        
+        DataframeLeft=LabelFrame(Dataframe,bd=10,relief=RIDGE,padx=10,
+                                                        font=("",12,"bold"),text="patient information")
+        DataframeLeft.place(x=0,y=5,width=980,height=350)
+        
+        
+        
+        DataframeRight=LabelFrame(Dataframe,bd=10,relief=RIDGE,padx=10,
+                                                        font=("",12,"bold"),text="prescription")
+        DataframeRight.place(x=990,y=5,width=460,height=350)
+        
+        ######################################buttonframe###########3
+        
+        Buttonframe=frame(self.root,bd=20,relief=RIDGE)
+        Buttonframe.place(x=0,y=530,width=1530,height=70)
+        
+        ##########################3details frame###############
+        
+        Detailsframe=frame(self.root,bd=20,relief=RIDGE)
+        Detailsframe.place(x=0,y=600,width=1530,height=190)
+        
+        #######################DataframeLefyt#################
+        
+        lblNameTablet=Label(DataframeLeft,text="names of table",font=(""),padx=2,pady=6)
+        lblNameTablet.grid(row=0,column=0,sticky=w)
+        
+        comNametablet=ttk.Combobox(DataFrameLeft,font=(),width=33)
+        comNametablet["values"]=()
+        comNametablet.grid(row=0,column=1)
+        
+        lblref=Label(DataframeLeft,text="reference no.",font=(""),padx=2,pady=6)
+        lblref.grid(row=0,column=0,sticky=w)
+        txtref=Entry(DataFrameLeft,font=(),width=35)
+        txtref.grid(row=1,column=1)
+        
+        
+        lblDose=Label(DataframeLeft,text="Dose",font=(""),padx=2,pady=6)
+        lblDose.grid(row=0,column=0,sticky=w)
+        txtDose=Entry(DataFrameLeft,font=(),width=35)
+        txtDose.grid(row=2,column=1)
+        
+        
+        lblnooftable=Label(DataframeLeft,text="no.of table",font=(""),padx=2,pady=6)
+        lblnooftable.grid(row=0,column=0,sticky=w)
+        txtnooftable=Entry(DataFrameLeft,font=(),width=35)
+        txtnooftable.grid(row=3,column=1)
+        
+        
+        lbllot=Label(DataframeLeft,text="lot",font=(""),padx=2,pady=6)
+        lbllot.grid(row=0,column=0,sticky=w)
+        txtlot=Entry(DataFrameLeft,font=(),width=35)
+        txtlot.grid(row=4,column=1)
+        
+        
+        lblissuedate=Label(DataframeLeft,text="issue date",font=(""),padx=2,pady=6)
+        lblissuedate.grid(row=0,column=0,sticky=w)
+        txtissuedate=Entry(DataFrameLeft,font=(),width=35)
+        txtissuedate.grid(row=5,column=1)
+        
+        
+        lblExpdate=Label(DataframeLeft,text="Exp date",font=(""),padx=2,pady=6)
+        lblExpdate.grid(row=0,column=0,sticky=w)
+        txtExpdate=Entry(DataFrameLeft,font=(),width=35)
+        txtExpdate.grid(row=6,column=1)
+        
+        
+        lbldailydose=Label(DataframeLeft,text="daily dose",font=(""),padx=2,pady=6)
+        lbldailydose.grid(row=0,column=0,sticky=w)
+        txtdailydose=Entry(DataFrameLeft,font=(),width=35)
+        txtdailydose.grid(row=7,column=1)
+        
+        
+        lblsideeffects=Label(DataframeLeft,text="side effect",font=(""),padx=2,pady=6)
+        lblsideeffects.grid(row=0,column=0,sticky=w)
+        txtsideeffects=Entry(DataFrameLeft,font=(),width=35)
+        txtsideeffects.grid(row=8,column=1)
+        
+        
+        lblfurtherinfo=Label(DataframeLeft,text="further info",font=(""),padx=2,pady=6)
+        lblfurtherinfo.grid(row=0,column=0,sticky=w)
+        txtfurtherinfo=Entry(DataFrameLeft,font=(),width=35)
+        txtfurtherinfo.grid(row=0,column=3)
+        
+        
+        lblbloodpressure=Label(DataframeLeft,text="blood pressure",font=(""),padx=2,pady=6)
+        lblbloodpressure.grid(row=0,column=0,sticky=w)
+        txtbloodpressure=Entry(DataFrameLeft,font=(),width=35)
+        txtbloodpressure.grid(row=1,column=3)
+        
+        
+        
+        lblstorage=Label(DataframeLeft,text="storage",font=(""),padx=2,pady=6)
+        lblstorage.grid(row=0,column=0,sticky=w)
+        txtstorage=Entry(DataFrameLeft,font=(),width=35)
+        txtstorage.grid(row=2,column=3)
+        
+        
+        lblmedicine=Label(DataframeLeft,text="medicine",font=(""),padx=2,pady=6)
+        lblmedicine.grid(row=0,column=0,sticky=w)
+        txtmedicine=Entry(DataFrameLeft,font=(),width=35)
+        txtmedicine.grid(row=3,column=3)
+        
+        
+        lblpatientid=Label(DataframeLeft,text="patientid",font=(""),padx=2,pady=6)
+        lblpatientid.grid(row=0,column=0,sticky=w)
+        txtpatientid=Entry(DataFrameLeft,font=(),width=35)
+        txtpatientid.grid(row=4,column=3)
+        
+        
+        lblNhsnumber=Label(DataframeLeft,text="Nhsnumber",font=(""),padx=2,pady=6)
+        lblNhsnumber.grid(row=0,column=0,sticky=w)
+        txtNhsnumber=Entry(DataFrameLeft,font=(),width=35)
+        txtnhsnumber.grid(row=5,column=3)
+        
+        
+        lblpaitientname=Label(DataframeLeft,text="patient name",font=(""),padx=2,pady=6)
+        lblpatientname.grid(row=0,column=0,sticky=w)
+        txtpatientname=Entry(DataFrameLeft,font=(),width=35)
+        txtpatientname.grid(row=6,column=3)
+        
+        
+        lbldateiofbirth=Label(DataframeLeft,text="date of birth",font=(""),padx=2,pady=6)
+        lbldateofbirth.grid(row=0,column=0,sticky=w)
+        txtdateofbirth=Entry(DataFrameLeft,font=(),width=35)
+        txtdateofbirth.grid(row=7,column=3)
+        
+        
+        lblpaitientaddress=Label(DataframeLeft,text="patient address",font=(""),padx=2,pady=6)
+        lblpatientaddress.grid(row=0,column=0,sticky=w)
+        txtpatientaddress=Entry(DataFrameLeft,font=(),width=35)
+        txtpatientaddress.grid(row=8,column=3)
+        
+        ############################dataframeright##################
+        
+        self.txtPrescription=Text(DataframeRight,font=(),width=45,height=16,padx=2,pady=6)
+        self.txtPrescription.grid(row=0,column=0)
+        
+        
+        ##########################button#################
+        
+        btnPrescription=Button(buttonframe,text="prescription",bg="",fg="",font="")
+        btnPrescription.grid(row=0,column=0)
+        
+        
+        btnPrescriptiondata=Button(buttonframe,text="prescription data",bg="",fg="",font="")
+        btnPrescriptiondata.grid(row=0,column=1)
+        
+        
+        btnupdate=Button(buttonframe,text="update",bg="",fg="",font="")
+        btnupdate.grid(row=0,column=2)
+        
+        
+        btndelete=Button(buttonframe,text="delate",bg="",fg="",font="")
+        btndelete.grid(row=0,column=3)
+        
+        
+        btnclear=Button(buttonframe,text="clear",bg="",fg="",font="")
+        btnclear.grid(row=0,column=4)
+        
+        
+        btnexit=Button(buttonframe,text="exit",bg="",fg="",font="")
+        btnexit.grid(row=0,column=5)
+        
+        
+        ################################table##################
+        
+        
+        
+        ######################scrool bar###################
+        
+        scroll_x=ttk.Scrollbar(Detailsframe,orient=HORIZONTAL)
+        scroll_y=ttk.Scrollbar(Detailsframe,orient=VERTICAL)  
+        self.hospital_table=ttk.Treeview(Detailframe,column=("nameodtablets","",""),xscollcommand=scroll_x.set,yscrollcommand=scroll_y.set)
+        
+        
+        scroll_x.pack=(side=BOTTOM,fill=x)
+        scroll_y.pack=(side=RIGHT,fill=y)
+                
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+root=Tk()
+ob=Hospital(root)
+root.mainloop()
